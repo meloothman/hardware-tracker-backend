@@ -18,7 +18,7 @@ public class Deal {
         this.type = type;
         this.price = price;
     }
-//s
+
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getType() { return type; }
