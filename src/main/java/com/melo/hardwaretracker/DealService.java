@@ -15,4 +15,9 @@ public class DealService {
     public Iterable<Deal> getAllDeals() {
         return repo.findAll();
     }
+
+    // Neu für die Löschfunktion
+    public void deleteById(Long id) {
+        repo.deleteById(id);
+    }
 }

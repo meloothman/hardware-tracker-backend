@@ -1,22 +1,29 @@
+
 package com.melo.hardwaretracker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/deals")
 public class DealController {
 
     @Autowired
-    DealService service;
+    private DealService dealService; // Wir injizieren jetzt den Service, nicht mehr das Repo
 
-    @PostMapping("/deals")
-    public Deal createDeal(@RequestBody Deal deal) {
-        return service.save(deal);
+    @GetMapping
+    public Iterable<Deal> getAllDeals() {
+        return dealService.getAllDeals();
     }
 
-    @GetMapping("/deals")
-    public Iterable<Deal> getDeals() {
-        return service.getAllDeals();
+    @PostMapping
+    public Deal createDeal(@RequestBody Deal deal) {
+        return dealService.save(deal);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDeal(@PathVariable Long id) {
+        dealService.deleteById(id);
     }
 }
